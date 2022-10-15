@@ -1,3 +1,5 @@
+import { BooksModule } from './modules/books/books.module';
+import { BooksController } from './modules/books/books.controller';
 import {
   Module,
   NestModule,
@@ -13,6 +15,7 @@ import { ImageModule } from './modules/uploads/image/image.module';
 
 @Module({
   imports: [
+    BooksModule,
     ImageModule,
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DB_URI),
@@ -25,6 +28,6 @@ export class AppModule {}
 //   configure(consumer: MiddlewareConsumer) {
 //     consumer
 //       .apply(SingleUploadCtrl)
-//       .forRoutes({ path: '/api/v1/uploads', method: RequestMethod.POST });
+//       .forRoutes({ path: '/api/v1/upload', method: RequestMethod.POST });
 //   }
 // }

@@ -1,0 +1,4 @@
+DB_URI = Your MongoDB connection string
+CLOUDINARY_NAME = Your cloudinary name
+CLOUDINARY_KEY = Your cloudinary key
+CLOUDINARY_SECRET = Your cloudinary secret

@@ -11,12 +11,12 @@ const ALLOWED_FORMAT = [
 const storage = multer.memoryStorage();
 const upload = multer({
   storage,
+  limits: { fieldNameSize: 10, fileSize: 0.0001 },
   fileFilter: function (req, file, cb) {
     if (ALLOWED_FORMAT.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      console.log('error');
-      throw new BadRequestException({ message: 'Not supported file format' });
+      cb(null, false);
     }
   },
 });
