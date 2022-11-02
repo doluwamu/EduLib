@@ -20,7 +20,7 @@ export interface Book extends Document {
 }
 
 export type BookDetails = {
-  image?: string;
+  image?: mongoose.Types.ObjectId;
   name: string;
   author?: string;
   intendedReaders: string;

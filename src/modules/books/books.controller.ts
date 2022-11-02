@@ -5,6 +5,8 @@ import {
   NotFoundException,
   Param,
   Get,
+  Put,
+  Delete,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { Request as Req } from 'express';
@@ -40,5 +42,22 @@ export class BooksController {
   async getBook(@Param('id') bookId: string) {
     const bookDetails = await this.bookService.getBookById(bookId);
     return bookDetails;
+  }
+
+  @Put(':id')
+  async updateBookData(@Param('id') bookId: string, @Request() req: Req) {
+    const { image, name, author, intendedReaders }: BookDetails = req.body;
+
+    console.log(name);
+    const bookInfo = { image, name, author, intendedReaders };
+
+    const editMsg = await this.bookService.editBookData(bookId, bookInfo);
+    return editMsg;
+  }
+
+  @Delete(':id')
+  async deleteBook(@Param('id') bookId: string) {
+    const bookDeleteMsg = await this.bookService.removeBook(bookId);
+    return bookDeleteMsg;
   }
 }
