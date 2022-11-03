@@ -21,8 +21,13 @@ export class ImageService {
         throw new NotFoundException('Image is not presented!');
       }
 
+      // Create base 64 representation of the file
       const file64 = bufferToBase64(file);
+
+      // Upload file to cloudinary
       const result = await cloudUpload(file64.content);
+
+      // Push file to database
       const cImage = new this.imageModel({
         url: result.secure_url,
         cloudinaryId: result.public_id,

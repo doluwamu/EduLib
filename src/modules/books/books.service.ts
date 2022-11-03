@@ -8,6 +8,9 @@ import { Book, BookDetails } from './book.model';
 export class BooksService {
   constructor(@InjectModel('Book') private readonly bookModel: Model<Book>) {}
 
+  // DESC: Service for adding book
+  // target folder: /books.controller
+  // target request: POST /api/v1/books
   createBook = async (bookDetails: BookDetails) => {
     const book = new this.bookModel({
       name: bookDetails.name,
@@ -24,6 +27,9 @@ export class BooksService {
     }
   };
 
+  // DESC: Service for get all books from DB
+  // target folder: /books.controller
+  // target request: GET /api/v1/books
   listBooks = async () => {
     try {
       const books = await this.bookModel.find({}).populate('image').exec();
@@ -33,6 +39,9 @@ export class BooksService {
     }
   };
 
+  // DESC: Service for get a book by specified id
+  // target folder: /books.controller
+  // target request: GET /api/v1/books/:id
   getBookById = async (bookId: string) => {
     try {
       const book = await this.bookModel.findById(bookId).exec();
@@ -45,6 +54,9 @@ export class BooksService {
     }
   };
 
+  // DESC: Service for update a book
+  // target folder: /books.controller
+  // target request: PUT /api/v1/books/:id
   editBookData = async (bookId: string, bookDetails: BookDetails) => {
     const book = await this.getBookData(bookId);
 
@@ -62,6 +74,9 @@ export class BooksService {
     return { id: bookId, message: 'Successfully updated book!' };
   };
 
+  // DESC: Service for delete a book
+  // target folder: /books.controller
+  // target request: DELETE /api/v1/books/:id
   removeBook = async (bookId: string) => {
     try {
       const book = await this.getBookData(bookId);
@@ -75,6 +90,7 @@ export class BooksService {
     }
   };
 
+  // DESC: helper method for getting book by specified id string
   getBookData = async (bookId: string) => {
     try {
       const book = await this.bookModel.findById(bookId).exec();
