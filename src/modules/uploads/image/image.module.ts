@@ -17,11 +17,10 @@ import { SingleUploadCtrl } from '../../../common/middlewares/UploadMiddleware';
   controllers: [ImageController],
   providers: [ImageService],
 })
-export class ImageModule {}
-//  implements NestModule {
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer
-//       .apply(SingleUploadCtrl)
-//       .forRoutes({ path: '/api/v1/upload', method: RequestMethod.POST });
-//   }
-// }
+export class ImageModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(SingleUploadCtrl)
+      .forRoutes({ path: '/api/v1/uploads', method: RequestMethod.POST });
+  }
+}
