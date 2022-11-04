@@ -13,6 +13,9 @@ import { Request as Req } from 'express';
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
+  // Request: /api/v1/uploads
+  // type: POST
+  // Desc: Endpoint to upload book image to cloudinary server
   @Post('')
   @UseInterceptors(FileInterceptor('photo'))
   async uploadImg(@Request() req: Req) {

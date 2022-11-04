@@ -15,6 +15,9 @@ export class ImageService {
     @InjectModel('Image') private readonly imageModel: Model<Image>,
   ) {}
 
+  // DESC: Service for image upload
+  // target folder: /image.controller
+  // target request: POST /api/v1/uploads
   uploadImage = async (file: Express.Multer.File) => {
     try {
       if (!file) {

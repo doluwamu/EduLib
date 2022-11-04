@@ -1,8 +1,14 @@
-import { Module } from '@nestjs/common';
+import {
+  Module,
+  NestModule,
+  MiddlewareConsumer,
+  RequestMethod,
+} from '@nestjs/common';
 import { ImageController } from './image.controller';
 import { ImageService } from './image.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { imageSchema } from './image.model';
+import { SingleUploadCtrl } from '../../../common/middlewares/UploadMiddleware';
 
 @Module({
   imports: [
@@ -12,3 +18,10 @@ import { imageSchema } from './image.model';
   providers: [ImageService],
 })
 export class ImageModule {}
+//  implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer
+//       .apply(SingleUploadCtrl)
+//       .forRoutes({ path: '/api/v1/upload', method: RequestMethod.POST });
+//   }
+// }
